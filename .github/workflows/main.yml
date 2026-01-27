@@ -7,11 +7,13 @@ jobs:
   hello:
     runs-on: ubuntu-latest
     steps:
-      - name: Print repository
-        run: echo "Repo: ${{ github.repository }}"
+      - name: Repo
+        run: |
+          echo "Repo: ${{ github.repository }}"
 
-      - name: Print branch
-        run: echo "Branch: ${{ github.ref_name }}"
+      - name: Branch
+        run: |
+          echo "Branch: ${{ github.ref_name }}"
 
-      - name: Print date
+      - name: Date
         run: date
