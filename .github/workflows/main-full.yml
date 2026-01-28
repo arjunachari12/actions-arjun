@@ -1,0 +1,85 @@
+# ============================================
+# WORKFLOW
+# ============================================
+# A workflow is an automated process
+# stored under .github/workflows/
+name: Learn GitHub Actions
+
+# ============================================
+# TRIGGERS
+# ============================================
+# Defines WHEN this workflow runs
+on:
+  # Automatically run on push
+  push:
+
+  # Allow manual trigger from GitHub UI
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: "Environment to run the workflow"
+        required: true
+        default: "dev"
+
+# ============================================
+# JOBS
+# ============================================
+# A workflow can have multiple jobs
+jobs:
+  # Job ID (internal reference)
+  learning-job:
+    # Runner: the VM where steps execute
+    runs-on: ubuntu-latest
+
+    # Environment variables available to all steps
+    env:
+      APP_NAME: demo-app
+
+    # ========================================
+    # STEPS
+    # ========================================
+    # Steps run sequentially inside a job
+    steps:
+      # Step 1: Basic system info
+      - name: Show runner information
+        run: |
+          echo "Runner OS      : $RUNNER_OS"
+          echo "Runner name    : $RUNNER_NAME"
+          echo "Working dir    : $GITHUB_WORKSPACE"
+
+      # Step 2: GitHub context variables
+      - name: Show GitHub context
+        run: |
+          echo "Repository     : ${{ github.repository }}"
+          echo "Branch         : ${{ github.ref_name }}"
+          echo "Commit SHA     : ${{ github.sha }}"
+          echo "Triggered by   : ${{ github.actor }}"
+          echo "Event name     : ${{ github.event_name }}"
+
+      # Step 3: Manual input usage
+      - name: Show workflow input
+        run: |
+          echo "Selected environment:"
+          echo "${{ inputs.environment }}"
+
+      # Step 4: Environment variables
+      - name: Use environment variables
+        run: |
+          echo "Application name: $APP_NAME"
+
+      # Step 5: Conditional execution
+      - name: Run only for main branch
+        if: github.ref_name == 'main'
+        run: |
+          echo "This step runs only on MAIN branch"
+
+      # Step 6: Simulated pipeline stages
+      - name: Pipeline stages
+        run: |
+          echo "PLAN"
+          echo "CODE"
+          echo "BUILD"
+          echo "TEST"
+          echo "SECURITY"
+          echo "DEPLOY"
+          echo "MONITOR"
