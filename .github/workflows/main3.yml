@@ -1,0 +1,78 @@
+name: Hello GitHub Actions
+
+on:
+  push:
+
+jobs:
+  hello:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Context info
+        run: |
+          echo "Repository  : ${{ github.repository }}"
+          echo "Branch      : ${{ github.ref_name }}"
+          echo "Commit SHA  : ${{ github.sha }}"
+          echo "Triggered by: ${{ github.actor }}"
+          echo "Run date    : $(date)"
+
+      - name: DevSecOps – Plan
+        run: |
+          echo "===== PLAN ====="
+          echo "Define requirements"
+          echo "Threat modeling"
+          echo "Security requirements"
+
+      - name: DevSecOps – Code
+        run: |
+          echo "===== CODE ====="
+          echo "Secure coding practices"
+          echo "Code reviews"
+          echo "Pre-commit checks"
+
+      - name: DevSecOps – Build
+        run: |
+          echo "===== BUILD ====="
+          echo "Compile / package application"
+          echo "Dependency resolution"
+
+      - name: DevSecOps – Test
+        run: |
+          echo "===== TEST ====="
+          echo "Unit tests"
+          echo "Integration tests"
+          echo "Security tests"
+
+      - name: DevSecOps – Security Scans
+        run: |
+          echo "===== SECURITY ====="
+          echo "SAST"
+          echo "SCA"
+          echo "IaC scanning"
+          echo "Secrets detection"
+
+      - name: DevSecOps – Release
+        run: |
+          echo "===== RELEASE ====="
+          echo "Artifact versioning"
+          echo "Approval gates"
+
+      - name: DevSecOps – Deploy
+        run: |
+          echo "===== DEPLOY ====="
+          echo "Infrastructure provisioning"
+          echo "Application deployment"
+
+      - name: DevSecOps – Operate
+        run: |
+          echo "===== OPERATE ====="
+          echo "Monitoring"
+          echo "Logging"
+          echo "Incident response"
+
+      - name: DevSecOps – Monitor & Improve
+        run: |
+          echo "===== MONITOR ====="
+          echo "Metrics"
+          echo "Feedback loop"
+          echo "Continuous improvement"
